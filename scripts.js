@@ -35,6 +35,7 @@ function imageMovie(data) {
   })
 }
 let titleID = document.getElementById("titulo")
+let imgID = document.getElementById("imgID")
 let oveviewID = document.getElementById("overview")
 let popUp = document.createElement('div')
 
@@ -49,16 +50,17 @@ function printData(id) {
       const { title, vote_average, overview , backdrop_path} = data
       
       
-      
       titleID.textContent = title
       
       
       oveviewID.textContent = overview
-      
+      imgID.src = `https://image.tmdb.org/t/p/original${backdrop_path}`
+      imgID.style = "width:700px;position:absolute"
       let div2 = document.createElement("div")
-      popUp.style = `z-index: 1;position: absolute;;background-size: cover;background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.73)), url("https://image.tmdb.org/t/p/original${backdrop_path}");`
-       div2.append(vote_average)
+      //popUp.style = `background-size: cover;background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.73)), url("https://image.tmdb.org/t/p/original${backdrop_path}");`
+      div2.append(vote_average)
       
+      popUp.remove()
       
       /* popUp.textContent = vote_average
       
