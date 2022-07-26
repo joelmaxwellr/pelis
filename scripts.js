@@ -20,12 +20,9 @@ function imageMovie(data) {
     img.width = '250'
 
     divCard.append(img)
-
-    
   })
 
   divCard.addEventListener('click', (e) => {
-
     let refer = e.target.src.split('/')
     refer = '/' + refer.pop()
     let selectDato = data.results.filter((element) => {
@@ -37,8 +34,10 @@ function imageMovie(data) {
     printData(selectDato[0].id)
   })
 }
-let popUp = document.createElement("div")
-popUp.remove()
+let titleID = document.getElementById("titulo")
+let oveviewID = document.getElementById("overview")
+let popUp = document.createElement('div')
+
 function printData(id) {
   fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${secret_key}&append_to_response=credits`,
@@ -47,22 +46,30 @@ function printData(id) {
     .then((data) => {
       console.log(data)
       
-      const { title, vote_average, release_date, overview } = data
+      const { title, vote_average, overview , backdrop_path} = data
       
-      popUp.append(title)
-      popUp.append(vote_average)
-      popUp.append(release_date)
-      popUp.append(overview)
-      console.log(title)
-      console.log(vote_average)
-      console.log(release_date)
-      console.log(overview)
       
-    popUp.classList="pop"
-})
-
+      
+      titleID.textContent = title
+      
+      
+      oveviewID.textContent = overview
+      
+      let div2 = document.createElement("div")
+      popUp.style = `z-index: 1;position: absolute;;background-size: cover;background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.73)), url("https://image.tmdb.org/t/p/original${backdrop_path}");`
+       div2.append(vote_average)
+      
+      
+      /* popUp.textContent = vote_average
+      
+      popUp.textContent = release_date
+      */
+     
+     
+     popUp.classList="pop"
+    })
 }
-divCard.append(popUp)
 
+divCard.append(popUp)
 
 trendingMovies()
