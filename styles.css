@@ -1,0 +1,8 @@
+.pop{
+    margin: 0 auto;
+    width: 50em;
+    height: 35em;
+    background-color:white;
+   position:fixed;
+   opacity: 0.8;
+}
